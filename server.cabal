@@ -2,6 +2,7 @@ name:          server
 version:       0.0
 cabal-version: >= 1.2
 build-type:    Simple
+data-files:    response
 
 executable server
   main-is:       Main.hs
