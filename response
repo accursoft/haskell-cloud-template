@@ -1,3 +1,5 @@
 HTTP/1.1 200 OK
 
-Welcome
+Welcome to Haskell Cloud!
+
+The following packages are available:
