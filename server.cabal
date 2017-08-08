@@ -7,3 +7,4 @@ data-files:    response
 executable server
   main-is:       Main.hs
   build-depends: base, network
+  other-modules: Paths_server
