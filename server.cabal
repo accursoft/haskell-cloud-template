@@ -6,5 +6,6 @@ data-files:    response
 
 executable server
   main-is:       Main.hs
-  build-depends: base, network
+  build-depends: base, wai, warp, http-types
   other-modules: Paths_server
+  extensions: OverloadedStrings

@@ -1,16 +1,12 @@
-import Control.Concurrent
-import Control.Monad
-import Data.Char
-import System.IO
-import System.IO.Error
-import Network
-import Control.Exception
+import Network.Wai
+import Network.HTTP.Types
+import Network.Wai.Handler.Warp
 import Paths_server
 
-main = do sock <- listenOn $ PortNumber 8080
-          response <- getDataFileName "response" >>= readFile
-          forever $ do (handle,_,_) <- accept sock
-                       forkIO $ do catch (do request <- hGetContents handle
-                                             when (any (null . dropWhile isSpace) (lines request)) $ void $ tryIOError $ hPutStr handle response)
-                                         (\e -> putStrLn $ show (e::IOException))
-                                   hClose handle
+main = do
+  response <- getDataFileName "response"
+  run 8080 $ \_ respond -> respond $ responseFile
+    status200
+    [(hContentType, "text/plain")]
+    response
+    Nothing
